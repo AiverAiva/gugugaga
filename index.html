@@ -20,16 +20,22 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
-            background: black; 
+            background: black;
         }
 
         video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
+            top: 50%;
+            left: 50%;
             height: 100vh;
-            object-fit: cover;
+            /* always fill the viewport height */
+            width: auto;
+            /* let width grow/shrink with aspect ratio */
+            transform: translate(-50%, -50%);
+            /* keeps the video centered */
+            /* object-fit is no longer needed because we’re explicitly
+       controlling the dimensions, but leaving it in doesn’t hurt: */
+            object-fit: contain;
             display: none;
             /* Hide until user clicks Start */
         }
