@@ -13,7 +13,13 @@
     <meta property="og:image:type" content="image/png" />
     <meta name="theme-color" content="#ffd7d7" />
     <link rel="icon" href="https://www.gugugaga.net/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
     <style>
+        * {
+            font-family: "Noto Sans", sans-serif;
+        }
+
         html,
         body {
             margin: 0;
@@ -54,6 +60,31 @@
             cursor: pointer;
             z-index: 10;
         }
+
+        #infoOverlay {
+            position: fixed;
+            top: 1%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 3px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            backdrop-filter: blur(6px);
+            display: none;
+            z-index: 20;
+            text-align: center;
+        }
+
+        #infoOverlay a {
+            color: #ffd7d7;
+            text-decoration: none;
+        }
+
+        #infoOverlay a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -65,10 +96,16 @@
     </video>
 
     <button id="startButton">咕咕嘎嘎？</button>
+    <div id="infoOverlay">
+        <p>🎬 呵纹Hevon@hevon2333：<a href="https://www.youtube.com/@hevon2333" target="_blank">Youtube</a>、<a
+                href="https://space.bilibili.com/13167438" target="_blank">bilibili</a></p>
+        <p>🖼️ Honkai: Star Rail@honkaistarrail：<a href="https://x.com/honkaistarrail/status/1859931158840295735" target="_blank">Twitter</a></p>
+    </div>
 
     <script>
         const button = document.getElementById('startButton');
         const video = document.getElementById('videoPlayer');
+        const info = document.getElementById('infoOverlay');
 
         button.addEventListener('click', () => {
             button.style.display = 'none';
@@ -76,6 +113,10 @@
             video.muted = false;
             video.volume = 0.2; // Set volume to 20%
             video.play();
+
+            video.addEventListener('playing', () => {
+                info.style.display = 'block';
+            }, { once: true });
         });
     </script>
 
